@@ -10,14 +10,14 @@ from os import getenv
 PII_FIELDS = ('name', 'email', 'phone', 'ssn', 'password')
 
 
-def filter_datum(fields: List[str], redaction: str, log_msg: str,
+def filter_datum(fields: List[str], redaction: str, message: str,
                  separator: str) -> str:
     """returns the log message obfuscated"""
     for a in fields:
-        log_msg = re.sub(a + "=.*?" + separator,
+        message = re.sub(a + "=.*?" + separator,
                          a + "=" + redaction + separator,
-                         log_msg)
-    return log_msg
+                         message)
+    return message
 
 
 class RedactingFormatter(logging.Formatter):
