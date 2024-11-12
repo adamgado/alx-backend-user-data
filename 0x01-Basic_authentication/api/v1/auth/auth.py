@@ -8,13 +8,13 @@ import fnmatch
 class Auth:
     """Authentication class.
     """
-    def require_auth(self, path: str, excluded: List[str]) -> bool:
+    def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """return True if the path is not in the list of strings excluded"""
         if path is None:
             return True
-        if excluded is None or not excluded:
+        if excluded_paths is None or not excluded_paths:
             return True
-        for a in excluded:
+        for a in excluded_paths:
             if fnmatch.fnmatch(path, a):
                 return False
         return True
