@@ -6,16 +6,15 @@ import fnmatch
 
 
 class Auth:
-    """Authentication class.
-    """
+    """Authentication class"""
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """return True if the path is not in the list of strings excluded"""
         if path is None:
             return True
         if excluded_paths is None or not excluded_paths:
             return True
-        for a in excluded_paths:
-            if fnmatch.fnmatch(path, a):
+        for excluded in excluded_paths:
+            if fnmatch.fnmatch(path, excluded):
                 return False
         return True
 
@@ -27,5 +26,5 @@ class Auth:
             return None
 
     def current_user(self, request=None) -> TypeVar('User'):
-        """get user"""
+        """get user from request"""
         return None
